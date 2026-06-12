@@ -1,0 +1,20 @@
+[package]
+name = "baitap"
+version = "0.1.0"
+edition = "2021"
+authors = ["Tran Khanh Nam"]
+description = "A Stellar Soroban smart contract for monthly office cleaning robot subscriptions with automated maintenance suspension."
+
+[lib]
+# "cdylib" is required to compile the contract into a WebAssembly (.wasm) binary for the Stellar network
+crate-type = ["cdylib"]
+
+[dependencies]
+# Configured specifically with Soroban SDK v25 as requested
+soroban-sdk = "25.0.0"
+
+[profile.release]
+# Optimize for small binary size (critical for blockchain deployment limits)
+opt-level = "z"
+# Guard against arithmetic issues during subscription timestamp calculations
+overflow-checks = true
